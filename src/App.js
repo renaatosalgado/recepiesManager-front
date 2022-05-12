@@ -1,25 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { ThemeProvider } from "@emotion/react";
+import { createTheme, CssBaseline } from "@mui/material";
+import Alert from "./components/Alert";
+import { AlertProvider } from "./contexts/AlertContext";
+import { AuthProvider } from "./contexts/AuthContext";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import SignUp from "./pages/SignUp";
 
 function App() {
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#388e3c",
+      },
+      secondary: {
+        main: "#1976d2",
+      },
+      background: { default: "#FAFAFA", paper: "#FAFAFA" },
+    },
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <AlertProvider>
+        <AuthProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<SignUp />} />
+            </Routes>
+          </BrowserRouter>
+          <Alert />
+        </AuthProvider>
+      </AlertProvider>
+    </ThemeProvider>
   );
 }
 
