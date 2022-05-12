@@ -10,7 +10,6 @@ import {
   Typography,
 } from "@mui/material";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
-import Form from "../components/Form";
 import PasswordInput from "../components/PasswordInput";
 import useAlert from "../hooks/useAlert";
 import api from "../services/api";
@@ -40,6 +39,28 @@ const styles = {
   },
 };
 
+function Copyright(props) {
+  return (
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
+      {"Copyright © "}
+      <Link
+        color="inherit"
+        href="https://www.linkedin.com/in/renato-salgado-dias-b5423b1b0/"
+        target="_blank"
+      >
+        Renato Salgado Dias
+      </Link>{" "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
+
 function SignUp() {
   const { setMessage } = useAlert();
   const navigate = useNavigate();
@@ -53,16 +74,29 @@ function SignUp() {
 
   useEffect(() => {
     if (token) {
-      navigate("/home");
+      authValidation();
     }
+    //eslint-disable-next-line
   }, []);
+
+  async function authValidation() {
+    try {
+      await api.validateToken(token);
+      navigate("/home");
+    } catch (error) {
+      localStorage.clear();
+      navigate("/sign-in");
+      setMessage({ type: "error", text: error.response.data });
+      return;
+    }
+  }
 
   function handleInputChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
 
   async function handleSubmit(e) {
-      console.log("aqui", formData)
+    console.log("aqui", formData);
     e.preventDefault();
     setMessage(null);
 
@@ -86,7 +120,7 @@ function SignUp() {
     try {
       await api.signUp({ name, email, password });
       setMessage({ type: "success", text: "Cadastro efetuado com sucesso!" });
-      navigate("/login");
+      navigate("/sign-in");
     } catch (error) {
       if (error.response) {
         setMessage({
@@ -135,7 +169,7 @@ function SignUp() {
               <TextField
                 name="email"
                 sx={{ width: "100%" }}
-                label="Email"
+                label="E-mail"
                 type="email"
                 variant="outlined"
                 onChange={handleInputChange}
@@ -171,13 +205,14 @@ function SignUp() {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link component={RouterLink} to="/login" variant="body2">
+              <Link component={RouterLink} to="/sign-in" variant="body2">
                 <Typography>Já possui cadastro? Entre!</Typography>
               </Link>
             </Grid>
           </Grid>
         </Box>
       </Box>
+      <Copyright sx={{ mt: 8, mb: 4 }} />
     </Container>
   );
 }

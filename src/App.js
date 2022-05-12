@@ -6,6 +6,7 @@ import { AlertProvider } from "./contexts/AlertContext";
 import { AuthProvider } from "./contexts/AuthContext";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SignUp from "./pages/SignUp";
+import SignIn from "./pages/SignIn";
 
 function App() {
   const theme = createTheme({
@@ -28,6 +29,7 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<SignUp />} />
+              <Route path="/sign-in" element={<SignIn />} />
             </Routes>
           </BrowserRouter>
           <Alert />
