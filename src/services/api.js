@@ -31,11 +31,17 @@ function listRecepies(token) {
   return BASE_URL.get("/recepies", config);
 }
 
+function logout(token) {
+  const config = getConfig(token);
+  return BASE_URL.delete("/auth/logout", config);
+}
+
 const api = {
   signUp,
   signIn,
   validateToken,
   listRecepies,
+  logout,
 };
 
 export default api;
