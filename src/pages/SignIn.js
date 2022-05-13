@@ -96,7 +96,7 @@ export default function SignIn() {
           <LockOutlinedIcon fontSize="large" />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Acesso
         </Typography>
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField

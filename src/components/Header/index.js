@@ -66,9 +66,14 @@ export default function Header(props) {
   };
 
   const handleLogout = async () => {
-    await api.logout(token);
-    localStorage.clear();
-    navigate("/sign-in");
+    try {
+      await api.logout(token);
+      localStorage.clear();
+      navigate("/sign-in");
+    } catch (error) {
+      localStorage.clear();
+      navigate("/sign-in");
+    }
   };
 
   const handleHome = () => {
@@ -109,6 +114,7 @@ export default function Header(props) {
               aria-haspopup="true"
               onClick={handleMenu}
               color="inherit"
+              id="account-btn"
             >
               <AccountCircle fontSize="large" />
             </IconButton>
@@ -116,7 +122,7 @@ export default function Header(props) {
               id="menu-appbar"
               anchorEl={anchorEl}
               anchorOrigin={{
-                vertical: "top",
+                vertical: "bottom",
                 horizontal: "right",
               }}
               keepMounted

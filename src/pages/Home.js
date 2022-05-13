@@ -34,7 +34,10 @@ export default function Home() {
       const { data: recepies } = await api.listRecepies(token);
       console.log(recepies);
       setRecepies(recepies);
-      setHasRecepies(true);
+
+      if (recepies.length > 0) {
+        setHasRecepies(true);
+      }
     }
     loadPage();
   }, [token]);
@@ -54,7 +57,6 @@ export default function Home() {
       <Header />
 
       <main>
-        {/* Hero unit */}
         <Box
           sx={{
             bgcolor: "background.paper",
@@ -108,7 +110,6 @@ export default function Home() {
           </Container>
         </Box>
         <Container sx={{ py: 8 }} maxWidth="md">
-          {/* End hero unit */}
           <Grid container spacing={4}>
             {hasRecepies ? (
               recepies.map((recepie) => (
@@ -122,17 +123,10 @@ export default function Home() {
                   >
                     <CardMedia
                       component="img"
-                      // sx={{
-                      //   // 16:9
-                      //   pt: "6.25%",
-                      // }}
                       image={recepie.picture}
                       alt="recepie-picture"
                     />
                     <CardContent sx={{ flexGrow: 1 }}>
-                      {/* <Typography gutterBottom variant="h5" component="h2">
-                            Moqueca de banana da terra
-                          </Typography> */}
                       <Typography sx={{ fontWeight: "bold" }}>
                         {recepie.name}
                       </Typography>
