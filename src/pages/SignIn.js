@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
+  Avatar,
   Box,
   Button,
   Container,
@@ -8,35 +9,13 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import Avatar from "@mui/material/Avatar";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import PasswordInput from "../components/PasswordInput";
 import useAlert from "../hooks/useAlert";
 import useAuth from "../hooks/useAuth";
 import api from "../services/api";
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link
-        color="inherit"
-        href="https://www.linkedin.com/in/renato-salgado-dias-b5423b1b0/"
-        target="_blank"
-      >
-        Renato Salgado Dias
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import Copyright from "../components/Copyright";
 
 export default function SignIn() {
   const { signIn } = useAuth();
@@ -54,13 +33,13 @@ export default function SignIn() {
     }
     //eslint-disable-next-line
   }, []);
-
   async function authValidation() {
     try {
       await api.validateToken(token);
       navigate("/home");
     } catch (error) {
       localStorage.clear();
+      navigate("/sign-in");
       setMessage({ type: "error", text: error.response.data });
       return;
     }
@@ -113,9 +92,9 @@ export default function SignIn() {
           alignItems: "center",
         }}
       >
-        {/* <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-          <LockOutlinedIcon />
-        </Avatar> */}
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main", width: 56, height: 56 }}>
+          <LockOutlinedIcon fontSize="large" />
+        </Avatar>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>

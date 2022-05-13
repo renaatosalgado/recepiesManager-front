@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
+  Avatar,
   Box,
   Button,
   Container,
@@ -9,11 +10,13 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import AssignmentIndOutlinedIcon from "@mui/icons-material/AssignmentIndOutlined";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import PasswordInput from "../components/PasswordInput";
 import useAlert from "../hooks/useAlert";
 import api from "../services/api";
 import useAuth from "../hooks/useAuth";
+import Copyright from "../components/Copyright";
 
 const styles = {
   container: {
@@ -39,38 +42,16 @@ const styles = {
   },
 };
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link
-        color="inherit"
-        href="https://www.linkedin.com/in/renato-salgado-dias-b5423b1b0/"
-        target="_blank"
-      >
-        Renato Salgado Dias
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
 function SignUp() {
   const { setMessage } = useAlert();
   const navigate = useNavigate();
+  const { token } = useAuth();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     passwordConfirmation: "",
   });
-  const { token } = useAuth();
 
   useEffect(() => {
     if (token) {
@@ -146,9 +127,9 @@ function SignUp() {
           alignItems: "center",
         }}
       >
-        {/* <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar> */}
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main", width: 56, height: 56 }}>
+          <AssignmentIndOutlinedIcon fontSize="large" />
+        </Avatar>
         <Typography component="h1" variant="h5">
           Cadastro
         </Typography>

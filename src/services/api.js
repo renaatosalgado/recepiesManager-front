@@ -26,10 +26,16 @@ function validateToken(token) {
   return BASE_URL.get("/auth/validate", config);
 }
 
+function listRecepies(token) {
+  const config = getConfig(token);
+  return BASE_URL.get("/recepies", config);
+}
+
 const api = {
   signUp,
   signIn,
   validateToken,
+  listRecepies,
 };
 
 export default api;
