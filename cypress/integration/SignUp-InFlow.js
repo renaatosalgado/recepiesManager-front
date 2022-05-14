@@ -7,8 +7,6 @@ const user = {
   password: faker.internet.password(),
 };
 
-let token = "";
-
 describe("Sign-up, sign-in and logout flow", () => {
   before(() => {
     cy.request("DELETE", "http://localhost:5000/users/reset");

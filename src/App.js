@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Home from "./pages/Home";
+import SingleRecepie from "./pages/SingleRecepie";
 
 function App() {
   const theme = createTheme({
@@ -32,6 +33,7 @@ function App() {
               <Route path="/" element={<SignUp />} />
               <Route path="/sign-in" element={<SignIn />} />
               <Route path="/home" element={<Home />} />
+              <Route path="/recepies/:id" element={<SingleRecepie />} />
             </Routes>
           </BrowserRouter>
           <Alert />

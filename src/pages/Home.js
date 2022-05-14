@@ -137,7 +137,7 @@ export default function Home() {
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <Button size="small">Visualizar</Button>
+                      <Button size="small" onClick={() => navigate(`/recepies/${recepie.id}`)}>Visualizar</Button>
                     </CardActions>
                   </Card>
                 </Grid>
