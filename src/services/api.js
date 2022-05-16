@@ -36,12 +36,18 @@ function logout(token) {
   return BASE_URL.delete("/auth/logout", config);
 }
 
+function findSingleRecepie(token, recepieId) {
+  const config = getConfig(token);
+  return BASE_URL.get(`/recepies/${recepieId}`, config);
+}
+
 const api = {
   signUp,
   signIn,
   validateToken,
   listRecepies,
   logout,
+  findSingleRecepie,
 };
 
 export default api;

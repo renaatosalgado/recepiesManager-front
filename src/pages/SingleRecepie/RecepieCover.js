@@ -1,12 +1,7 @@
 import React from "react";
-import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
+import { Box, Grid, Paper, Typography } from "@mui/material";
 
-function RecepieCover(props) {
-  const { post } = props;
-
+function RecepieCover({ recepie }) {
   return (
     <Paper
       sx={{
@@ -17,19 +12,17 @@ function RecepieCover(props) {
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
-        backgroundImage:
-          "url(https://media.istockphoto.com/photos/various-fresh-mix-salad-leaves-with-tomato-in-bowl-on-wooden-picture-id1075446340?k=20&m=1075446340&s=612x612&w=0&h=_fsCa3lGfd62T2xRKWhIrLu1BGcSCfnat0FITB_Nn1E=)",
-        //backgroundImage: `url(${post.image})`,
+        backgroundImage: `url(${recepie.picture})`,
       }}
     >
-      {/* Increase the priority of the hero background image */}
       {
         <img
           style={{ display: "none" }}
-          src={post.image}
-          alt={post.imageText}
+          src={recepie.picture}
+          alt={recepie.name}
         />
       }
+
       <Box
         sx={{
           position: "absolute",
@@ -55,7 +48,12 @@ function RecepieCover(props) {
               color="inherit"
               gutterBottom
             >
-              {post.title}
+              {recepie.name}
+            </Typography>
+            <Typography component="h2" variant="h6" color="inherit">
+              {recepie.servingPortion === 1
+                ? `Serve ${recepie.servingPortion} pessoa`
+                : `Serve ${recepie.servingPortion} pessoas`}
             </Typography>
           </Box>
         </Grid>

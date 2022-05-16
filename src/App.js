@@ -33,7 +33,7 @@ function App() {
               <Route path="/" element={<SignUp />} />
               <Route path="/sign-in" element={<SignIn />} />
               <Route path="/home" element={<Home />} />
-              <Route path="/recepies/:id" element={<SingleRecepie />} />
+              <Route path="/recepies/single/:recepieId" element={<SingleRecepie />} />
             </Routes>
           </BrowserRouter>
           <Alert />

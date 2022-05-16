@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Header from "../../components/Header";
@@ -6,15 +6,9 @@ import RecepieCover from "./RecepieCover";
 import Method from "./Method";
 import Ingredients from "./Ingredients";
 import Footer from "../../components/Footer";
-
-const mainFeaturedPost = {
-  title: "Title of a longer featured blog post",
-  description:
-    "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
-  image: "https://source.unsplash.com/random",
-  imageText: "main image description",
-  linkText: "Continue reading…",
-};
+import { useParams } from "react-router-dom";
+import api from "../../services/api";
+import useAuth from "../../hooks/useAuth";
 
 const post1 = { name: "eai" };
 const post2 = { name: "ea2" };
@@ -41,25 +35,45 @@ const sidebar = {
   ],
 };
 
-export default function Blog() {
+export default function SingleRecepie() {
+  const params = useParams();
+  const { recepieId } = params;
+  const { token } = useAuth();
+  const [recepie, setRecepie] = useState({});
+  const [ingredients, setIngredients] = useState([]);
+
+  scrollTo(0, 0);
+
+  useEffect(() => {
+    async function getSingleRecepie() {
+      const { data: singleRecepie } = await api.findSingleRecepie(
+        token,
+        recepieId
+      );
+      setRecepie(singleRecepie);
+      setIngredients(singleRecepie.ingredientsRecepies);
+      console.log(singleRecepie.ingredientsRecepies);
+    }
+
+    getSingleRecepie();
+  }, []);
+
   return (
     <>
       <Header />
 
       <Container maxWidth="lg">
         <main>
-          <RecepieCover post={mainFeaturedPost} />
+          <RecepieCover recepie={recepie} />
 
           <Grid container spacing={5} sx={{ mt: 3 }}>
-            <Ingredients
-              title={sidebar.title}
-              description={sidebar.description}
-              archives={sidebar.archives}
-            />
-            <Method title="From the firehose" posts={posts} />
+            <Ingredients ingredients={ingredients} />
+
+            <Method recepie={recepie} />
           </Grid>
         </main>
       </Container>
+
       <Footer />
     </>
   );

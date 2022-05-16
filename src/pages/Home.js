@@ -59,7 +59,7 @@ export default function Home() {
       <main>
         <Box
           sx={{
-            bgcolor: "background.paper",
+            bgcolor: "#FAFAFA",
             pt: 1,
             pb: 1,
           }}
@@ -137,7 +137,7 @@ export default function Home() {
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <Button size="small" onClick={() => navigate(`/recepies/${recepie.id}`)}>Visualizar</Button>
+                      <Button size="small" onClick={() => navigate(`/recepies/single/${recepie.id}`)}>Visualizar</Button>
                     </CardActions>
                   </Card>
                 </Grid>
