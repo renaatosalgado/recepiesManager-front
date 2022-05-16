@@ -41,6 +41,11 @@ function findSingleRecepie(token, recepieId) {
   return BASE_URL.get(`/recepies/${recepieId}`, config);
 }
 
+function addRecepie(token, body) {
+  const config = getConfig(token);
+  return BASE_URL.post("/recepies", body, config);
+}
+
 const api = {
   signUp,
   signIn,
@@ -48,6 +53,7 @@ const api = {
   listRecepies,
   logout,
   findSingleRecepie,
+  addRecepie,
 };
 
 export default api;

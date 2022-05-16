@@ -9,6 +9,7 @@ import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
 import Home from "./pages/Home";
 import SingleRecepie from "./pages/SingleRecepie";
+import AddNewRecepie from "./pages/AddNewRecepie";
 
 function App() {
   const theme = createTheme({
@@ -33,7 +34,11 @@ function App() {
               <Route path="/" element={<SignUp />} />
               <Route path="/sign-in" element={<SignIn />} />
               <Route path="/home" element={<Home />} />
-              <Route path="/recepies/single/:recepieId" element={<SingleRecepie />} />
+              <Route
+                path="/recepies/single/:recepieId"
+                element={<SingleRecepie />}
+              />
+              <Route path="/recepies/add-new" element={<AddNewRecepie />} />
             </Routes>
           </BrowserRouter>
           <Alert />
