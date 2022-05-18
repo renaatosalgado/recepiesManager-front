@@ -137,21 +137,30 @@ export default function Home() {
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <Button size="small" onClick={() => navigate(`/recepies/single/${recepie.id}`)}>Visualizar</Button>
+                      <Button
+                        size="small"
+                        onClick={() =>
+                          navigate(`/recepies/single/${recepie.id}`)
+                        }
+                      >
+                        Visualizar
+                      </Button>
                     </CardActions>
                   </Card>
                 </Grid>
               ))
             ) : (
-              <Typography
-                variant="h5"
-                align="center"
-                color="text.secondary"
-                paragraph
-              >
-                Você ainda não cadastrou nenhuma receita! Utilize o botão de
-                adicionar nova receita para começar :)
-              </Typography>
+              <Grid item>
+                <Typography
+                  variant="h5"
+                  align="center"
+                  color="text.secondary"
+                  paragraph
+                >
+                  Você ainda não cadastrou nenhuma receita! Utilize o botão de
+                  adicionar nova receita para começar :)
+                </Typography>
+              </Grid>
             )}
           </Grid>
         </Container>

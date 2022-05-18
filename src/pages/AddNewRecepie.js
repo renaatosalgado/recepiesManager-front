@@ -36,7 +36,6 @@ export default function AddNewRecepie() {
     data[index][e.target.name] = e.target.value;
 
     setIngredientFields(data);
-    console.log(ingredientFields, servingOptions);
   }
 
   function addIngredientField() {
@@ -61,10 +60,11 @@ export default function AddNewRecepie() {
     console.log(formData);
 
     if (
+      ingredientFields.length === 0 ||
       !formData?.method ||
       !formData?.name ||
       !formData?.servingPortion ||
-      formData?.picture
+      !formData?.picture
     ) {
       setMessage({ type: "error", text: "Todos os campos são obrigatórios!" });
       return;
@@ -75,20 +75,22 @@ export default function AddNewRecepie() {
         ingredients: ingredientFields,
         info: formData,
       });
+      setMessage({ type: "success", text: "Receita cadastrada com sucesso!" });
+      navigate("/home")
     } catch (error) {
       if (error.response) {
         setMessage({
           type: "error",
           text: error.response.data,
         });
-        navigate("/recepies/add-new");
+        //navigate("/recepies/add-new");
         return;
       }
       setMessage({
         type: "error",
         text: "Erro, tente novamente em alguns segundos!",
       });
-      navigate("/recepies/add-new");
+      //navigate("/recepies/add-new");
     }
   }
 
