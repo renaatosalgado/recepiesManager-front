@@ -32,7 +32,7 @@ export default function Home() {
 
     async function loadPage() {
       const { data: recepies } = await api.listRecepies(token);
-      console.log(recepies);
+      console.log({ recepies });
       setRecepies(recepies);
 
       if (recepies.length > 0) {
@@ -52,6 +52,11 @@ export default function Home() {
       return;
     }
   }
+
+  async function deleteRecepie(recepieId) {
+    console.log("deletei", recepieId)
+  }
+
   return (
     <>
       <Header />
@@ -75,14 +80,12 @@ export default function Home() {
               Suas receitas
             </Typography>
             <Typography
-              variant="h6"
+              variant="h7"
               align="center"
               color="text.secondary"
               paragraph
             >
-              Adicione novas receitas para sua lista pessoal. Em seguida
-              selecione as receitas para as quais deseja gerar sua lista de
-              compras específica!
+              Adicione novas receitas para sua lista pessoal ou selecione receitas já existentes para criar uma lista de compras personalizada.
             </Typography>
             <Stack
               sx={{ pt: 4 }}
@@ -138,12 +141,21 @@ export default function Home() {
                     </CardContent>
                     <CardActions>
                       <Button
+                      variant="contained"
                         size="small"
                         onClick={() =>
                           navigate(`/recepies/single/${recepie.id}`)
                         }
                       >
                         Visualizar
+                      </Button>
+                      <Button
+                      variant="outlined"
+                        size="small"
+                        onClick={() => deleteRecepie(recepie.id)}
+                        color="error"
+                      >
+                        Excluir
                       </Button>
                     </CardActions>
                   </Card>

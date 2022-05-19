@@ -10,6 +10,8 @@ import SignIn from "./pages/SignIn";
 import Home from "./pages/Home";
 import SingleRecepie from "./pages/SingleRecepie";
 import AddNewRecepie from "./pages/AddNewRecepie";
+import SelectRecepies from "./pages/SelectRecepies";
+import IngredientsList from "./pages/IngredientsList";
 
 function App() {
   const theme = createTheme({
@@ -39,6 +41,11 @@ function App() {
                 element={<SingleRecepie />}
               />
               <Route path="/recepies/add-new" element={<AddNewRecepie />} />
+              <Route path="/recepies/choose" element={<SelectRecepies />} />
+              <Route
+                path="/ingredients/list-all"
+                element={<IngredientsList />}
+              />
             </Routes>
           </BrowserRouter>
           <Alert />
