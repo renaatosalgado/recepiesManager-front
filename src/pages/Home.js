@@ -54,7 +54,8 @@ export default function Home() {
   }
 
   async function deleteRecepie(recepieId) {
-    console.log("deletei", recepieId)
+    await api.deleteRecepie(token, recepieId);
+    window.location.reload();
   }
 
   return (
@@ -85,7 +86,9 @@ export default function Home() {
               color="text.secondary"
               paragraph
             >
-              Adicione novas receitas para sua lista pessoal ou selecione receitas já existentes para criar uma lista de compras personalizada.
+              Adicione novas receitas para sua lista pessoal ou selecione
+              receitas já existentes para criar uma lista de compras
+              personalizada.
             </Typography>
             <Stack
               sx={{ pt: 4 }}
@@ -141,7 +144,7 @@ export default function Home() {
                     </CardContent>
                     <CardActions>
                       <Button
-                      variant="contained"
+                        variant="contained"
                         size="small"
                         onClick={() =>
                           navigate(`/recepies/single/${recepie.id}`)
@@ -150,7 +153,7 @@ export default function Home() {
                         Visualizar
                       </Button>
                       <Button
-                      variant="outlined"
+                        variant="outlined"
                         size="small"
                         onClick={() => deleteRecepie(recepie.id)}
                         color="error"

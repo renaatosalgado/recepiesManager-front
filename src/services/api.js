@@ -46,6 +46,11 @@ function addRecepie(token, body) {
   return BASE_URL.post("/recepies", body, config);
 }
 
+function deleteRecepie(token, recepieId) {
+  const config = getConfig(token);
+  return BASE_URL.delete(`/recepies/${recepieId}/delete`, config);
+}
+
 const api = {
   signUp,
   signIn,
@@ -54,6 +59,7 @@ const api = {
   logout,
   findSingleRecepie,
   addRecepie,
+  deleteRecepie,
 };
 
 export default api;
