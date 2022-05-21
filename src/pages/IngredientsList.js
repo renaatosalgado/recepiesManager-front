@@ -8,7 +8,6 @@ import {
   Container,
   List,
   ListItem,
-  ListItemText,
   Typography,
 } from "@mui/material";
 
@@ -23,7 +22,6 @@ export default function IngredientsList() {
         token,
         ingredientList
       );
-      console.log(allIngredients);
       setRecepies(allIngredients);
     }
     listAll();

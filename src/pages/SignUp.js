@@ -76,7 +76,6 @@ function SignUp() {
   }
 
   async function handleSubmit(e) {
-    console.log("aqui", formData);
     e.preventDefault();
     setMessage(null);
 

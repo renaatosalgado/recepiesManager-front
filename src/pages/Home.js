@@ -32,7 +32,6 @@ export default function Home() {
 
     async function loadPage() {
       const { data: recepies } = await api.listRecepies(token);
-      console.log({ recepies });
       setRecepies(recepies);
 
       if (recepies.length > 0) {

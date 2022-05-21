@@ -44,7 +44,6 @@ export default function SelectRecepies() {
     } else {
       setChosenRecepies([...chosenRecepies, Number(e.target.value)]);
     }
-    console.log({ chosenRecepies });
   }
 
   function handleShoppingList() {

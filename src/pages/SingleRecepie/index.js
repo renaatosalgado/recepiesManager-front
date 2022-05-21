@@ -27,7 +27,6 @@ export default function SingleRecepie() {
       );
       setRecepie(singleRecepie);
       setIngredients(singleRecepie.ingredientsRecepies);
-      console.log({ing: singleRecepie.ingredientsRecepies});
     }
 
     getSingleRecepie();

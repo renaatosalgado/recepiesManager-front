@@ -56,8 +56,6 @@ export default function AddNewRecepie() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(ingredientFields);
-    console.log(formData);
 
     if (
       ingredientFields.length === 0 ||
