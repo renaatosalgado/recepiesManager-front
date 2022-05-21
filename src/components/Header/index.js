@@ -8,6 +8,7 @@ import {
   Menu,
   MenuItem,
   Toolbar,
+  Tooltip,
   Typography,
   Zoom,
 } from "@mui/material";
@@ -84,20 +85,22 @@ export default function Header(props) {
     <>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-            onClick={handleHome}
-          >
-            <Avatar
-              sx={{ m: 1, bgcolor: "secondary.main", width: 56, height: 56 }}
+          <Tooltip title="Página principal" arrow>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              sx={{ mr: 2 }}
+              onClick={handleHome}
             >
-              <RestaurantMenuIcon fontSize="large" />
-            </Avatar>
-          </IconButton>
+              <Avatar
+                sx={{ m: 1, bgcolor: "secondary.main", width: 56, height: 56 }}
+              >
+                <RestaurantMenuIcon fontSize="large" />
+              </Avatar>
+            </IconButton>
+          </Tooltip>
           <Typography
             variant="h4"
             component="div"
@@ -107,17 +110,19 @@ export default function Header(props) {
           </Typography>
 
           <div>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleMenu}
-              color="inherit"
-              id="account-btn"
-            >
-              <AccountCircle fontSize="large" />
-            </IconButton>
+            <Tooltip title="Sair" arrow>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+                id="account-btn"
+              >
+                <AccountCircle fontSize="large" />
+              </IconButton>
+            </Tooltip>
             <Menu
               id="menu-appbar"
               anchorEl={anchorEl}

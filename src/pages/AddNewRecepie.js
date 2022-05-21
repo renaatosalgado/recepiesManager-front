@@ -9,6 +9,8 @@ import {
   Grid,
   TextField,
   MenuItem,
+  Tooltip,
+  Divider,
 } from "@mui/material";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import useAlert from "../hooks/useAlert";
@@ -74,7 +76,7 @@ export default function AddNewRecepie() {
         info: formData,
       });
       setMessage({ type: "success", text: "Receita cadastrada com sucesso!" });
-      navigate("/home")
+      navigate("/home");
     } catch (error) {
       if (error.response) {
         setMessage({
@@ -131,7 +133,7 @@ export default function AddNewRecepie() {
                   alignItems="center"
                   sx={{ mb: 2 }}
                 >
-                  <Grid item xs={1.5}>
+                  <Grid item sm={12} md={2}>
                     <TextField
                       helperText="ex.: '1/4' ou '2'"
                       fullWidth
@@ -143,7 +145,7 @@ export default function AddNewRecepie() {
                     />
                   </Grid>
 
-                  <Grid item xs={2}>
+                  <Grid item sm={12} md={2}>
                     <TextField
                       helperText="ex.: 'xícara' ou 'pitada'"
                       fullWidth
@@ -155,7 +157,7 @@ export default function AddNewRecepie() {
                     />
                   </Grid>
 
-                  <Grid item xs={2}>
+                  <Grid item sm={12} md={2}>
                     <TextField
                       helperText="ex.: batata-doce"
                       fullWidth
@@ -167,11 +169,25 @@ export default function AddNewRecepie() {
                     />
                   </Grid>
 
-                  <Grid item xs={0.25} sx={{ mb: 3, cursor: "pointer" }}>
-                    <Button onClick={() => removeIngredientField(index)}>
-                      <DeleteForeverIcon color="error" fontSize="small" />
-                    </Button>
+                  <Grid
+                    item
+                    sm={12}
+                    md={0.25}
+                    sx={{ mb: 3, cursor: "pointer" }}
+                  >
+                    <Tooltip title="Exluir ingrediente" placement="right" arrow>
+                      <Button onClick={() => removeIngredientField(index)}>
+                        <DeleteForeverIcon color="error" fontSize="small" />
+                      </Button>
+                    </Tooltip>
                   </Grid>
+                  <Divider
+                    sx={{ width: "50%", m: 2 }}
+                    orientation="horizontal"
+                    textAlign="center"
+                  >
+                    {index + 1}
+                  </Divider>
                 </Grid>
               );
             })}
