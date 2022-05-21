@@ -4,7 +4,7 @@ import Copyright from "../Copyright";
 
 export default function Footer() {
   return (
-      <Box sx={{ bgcolor: "#FAFAFA", p: 6 }} component="footer">
+      <Box sx={{ bgcolor: "#FAFAFA", p: 6, mt: 10 }} component="footer">
         <Typography variant="h6" align="center" gutterBottom>
           Recepies Manager
         </Typography>

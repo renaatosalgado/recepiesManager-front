@@ -54,7 +54,7 @@ function ScrollTop(props) {
 
 export default function Header(props) {
   const [anchorEl, setAnchorEl] = useState(null);
-  const { token } = useAuth();
+  const { token, signOut } = useAuth();
   const navigate = useNavigate();
 
   const handleMenu = (event) => {
@@ -68,10 +68,10 @@ export default function Header(props) {
   const handleLogout = async () => {
     try {
       await api.logout(token);
-      localStorage.clear();
+      signOut();
       navigate("/sign-in");
     } catch (error) {
-      localStorage.clear();
+      signOut();
       navigate("/sign-in");
     }
   };

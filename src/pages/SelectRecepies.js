@@ -7,8 +7,9 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import IngredientContext from "../contexts/IngredientsContext";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import useAuth from "../hooks/useAuth";
@@ -19,6 +20,7 @@ export default function SelectRecepies() {
   const [hasRecepies, setHasRecepies] = useState(false);
   const { token } = useAuth();
   const [chosenRecepies, setChosenRecepies] = useState([]);
+  const [ingredientList, setIngredientList] = useContext(IngredientContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -34,17 +36,19 @@ export default function SelectRecepies() {
   }, [token]);
 
   function handleCheckBox(e) {
-    if (chosenRecepies.includes(e.target.name)) {
+    if (chosenRecepies.includes(Number(e.target.value))) {
       const data = [...chosenRecepies];
-      const idx = chosenRecepies.indexOf(e.target.name);
+      const idx = chosenRecepies.indexOf(Number(e.target.value));
       data.splice(idx, 1);
       setChosenRecepies(data);
     } else {
-      setChosenRecepies([...chosenRecepies, e.target.name]);
+      setChosenRecepies([...chosenRecepies, Number(e.target.value)]);
     }
+    console.log({ chosenRecepies });
   }
 
   function handleShoppingList() {
+    setIngredientList(chosenRecepies);
     navigate("/ingredients/list-all");
   }
 
@@ -88,7 +92,7 @@ export default function SelectRecepies() {
                   <FormControlLabel
                     key={recepie.id}
                     control={
-                      <Checkbox name={recepie.name} onChange={handleCheckBox} />
+                      <Checkbox value={recepie.id} onChange={handleCheckBox} />
                     }
                     label={recepie.name}
                     labelPlacement="end"

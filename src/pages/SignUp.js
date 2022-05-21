@@ -4,7 +4,6 @@ import {
   Box,
   Button,
   Container,
-  Divider,
   Grid,
   Link,
   TextField,
@@ -16,7 +15,7 @@ import PasswordInput from "../components/PasswordInput";
 import useAlert from "../hooks/useAlert";
 import api from "../services/api";
 import useAuth from "../hooks/useAuth";
-import Copyright from "../components/Copyright";
+import Footer from "../components/Footer";
 
 const styles = {
   container: {
@@ -118,83 +117,92 @@ function SignUp() {
   }
 
   return (
-    <Container component="main" maxWidth="xs">
-      <Box
-        sx={{
-          marginTop: 8,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main", width: 56, height: 56 }}>
-          <AssignmentIndOutlinedIcon fontSize="large" />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Cadastro
-        </Typography>
-        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                name="name"
-                sx={{ width: "100%" }}
-                label="Nome completo"
-                type="text"
-                variant="outlined"
-                onChange={handleInputChange}
-                value={formData.name}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                name="email"
-                sx={{ width: "100%" }}
-                label="E-mail"
-                type="email"
-                variant="outlined"
-                onChange={handleInputChange}
-                value={formData.email}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <PasswordInput
-                name="password"
-                sx={{ width: "100%" }}
-                label="Senha"
-                onChange={handleInputChange}
-                value={formData.password}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <PasswordInput
-                sx={{ width: "100%" }}
-                name="passwordConfirmation"
-                label="Confirme sua senha"
-                onChange={handleInputChange}
-                value={formData.passwordConfirmation}
-              />
-            </Grid>
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+    <>
+      <Container component="main" maxWidth="xs">
+        <Box
+          sx={{
+            marginTop: 8,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Avatar
+            sx={{ m: 1, bgcolor: "secondary.main", width: 56, height: 56 }}
           >
-            Cadastrar
-          </Button>
-          <Grid container justifyContent="flex-end">
-            <Grid item>
-              <Link component={RouterLink} to="/sign-in" variant="body2">
-                <Typography>Já possui cadastro? Entre!</Typography>
-              </Link>
+            <AssignmentIndOutlinedIcon fontSize="large" />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Cadastro
+          </Typography>
+          <Box
+            component="form"
+            noValidate
+            onSubmit={handleSubmit}
+            sx={{ mt: 3 }}
+          >
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField
+                  name="name"
+                  sx={{ width: "100%" }}
+                  label="Nome completo"
+                  type="text"
+                  variant="outlined"
+                  onChange={handleInputChange}
+                  value={formData.name}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  name="email"
+                  sx={{ width: "100%" }}
+                  label="E-mail"
+                  type="email"
+                  variant="outlined"
+                  onChange={handleInputChange}
+                  value={formData.email}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <PasswordInput
+                  name="password"
+                  sx={{ width: "100%" }}
+                  label="Senha"
+                  onChange={handleInputChange}
+                  value={formData.password}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <PasswordInput
+                  sx={{ width: "100%" }}
+                  name="passwordConfirmation"
+                  label="Confirme sua senha"
+                  onChange={handleInputChange}
+                  value={formData.passwordConfirmation}
+                />
+              </Grid>
             </Grid>
-          </Grid>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Cadastrar
+            </Button>
+            <Grid container justifyContent="flex-end">
+              <Grid item>
+                <Link component={RouterLink} to="/sign-in" variant="body2">
+                  <Typography>Já possui cadastro? Entre!</Typography>
+                </Link>
+              </Grid>
+            </Grid>
+          </Box>
         </Box>
-      </Box>
-      <Copyright sx={{ mt: 8, mb: 4 }} />
-    </Container>
+      </Container>
+      <Footer />
+    </>
   );
 }
 

@@ -38,7 +38,7 @@ function logout(token) {
 
 function findSingleRecepie(token, recepieId) {
   const config = getConfig(token);
-  return BASE_URL.get(`/recepies/${recepieId}`, config);
+  return BASE_URL.get(`/recepies/${recepieId}/single`, config);
 }
 
 function addRecepie(token, body) {
@@ -51,6 +51,11 @@ function deleteRecepie(token, recepieId) {
   return BASE_URL.delete(`/recepies/${recepieId}/delete`, config);
 }
 
+function listAllIngredients(token, ids) {
+  const config = getConfig(token);
+  return BASE_URL.get(`/recepies/ingredients?ids=${ids}`, config);
+}
+
 const api = {
   signUp,
   signIn,
@@ -60,6 +65,7 @@ const api = {
   findSingleRecepie,
   addRecepie,
   deleteRecepie,
+  listAllIngredients,
 };
 
 export default api;
