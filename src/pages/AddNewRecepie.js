@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import {
@@ -32,6 +32,10 @@ export default function AddNewRecepie() {
     picture: "",
   });
   const servingOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  useEffect(() => {
+    scrollTo(0, 0);
+  }, []);
 
   function handleIngredientInputChange(index, e) {
     let data = [...ingredientFields];
@@ -83,14 +87,12 @@ export default function AddNewRecepie() {
           type: "error",
           text: error.response.data,
         });
-        //navigate("/recepies/add-new");
         return;
       }
       setMessage({
         type: "error",
         text: "Erro, tente novamente em alguns segundos!",
       });
-      //navigate("/recepies/add-new");
     }
   }
 

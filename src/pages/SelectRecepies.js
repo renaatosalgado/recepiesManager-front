@@ -24,6 +24,8 @@ export default function SelectRecepies() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    scrollTo(0, 0);
+
     async function loadPage() {
       const { data: recepies } = await api.listRecepies(token);
       setRecepies(recepies);

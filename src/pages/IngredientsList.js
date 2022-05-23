@@ -12,6 +12,8 @@ export default function IngredientsList() {
   const { token } = useAuth();
 
   useEffect(() => {
+    scrollTo(0, 0);
+
     async function listAll() {
       const { data: allIngredients } = await api.listAllIngredients(
         token,

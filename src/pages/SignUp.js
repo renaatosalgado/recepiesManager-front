@@ -16,6 +16,7 @@ import useAlert from "../hooks/useAlert";
 import api from "../services/api";
 import useAuth from "../hooks/useAuth";
 import Footer from "../components/Footer";
+import Logo from "../components/Logo";
 
 const styles = {
   container: {
@@ -53,6 +54,8 @@ function SignUp() {
   });
 
   useEffect(() => {
+    scrollTo(0, 0);
+
     if (token) {
       authValidation();
     }
@@ -117,6 +120,7 @@ function SignUp() {
 
   return (
     <>
+      <Logo />
       <Container component="main" maxWidth="xs">
         <Box
           sx={{

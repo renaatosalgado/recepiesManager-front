@@ -16,6 +16,7 @@ import useAlert from "../hooks/useAlert";
 import useAuth from "../hooks/useAuth";
 import api from "../services/api";
 import Footer from "../components/Footer";
+import Logo from "../components/Logo";
 
 export default function SignIn() {
   const { signIn } = useAuth();
@@ -28,6 +29,8 @@ export default function SignIn() {
   const { token } = useAuth();
 
   useEffect(() => {
+    scrollTo(0, 0);
+    
     if (token) {
       authValidation();
     }
@@ -84,6 +87,7 @@ export default function SignIn() {
 
   return (
     <>
+      <Logo />
       <Container component="main" maxWidth="xs">
         <Box
           sx={{

@@ -11,6 +11,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import Swal from "sweetalert2";
 import api from "../services/api";
 import useAuth from "../hooks/useAuth";
 import useAlert from "../hooks/useAlert";
@@ -26,6 +27,8 @@ export default function Home() {
   const [hasRecepies, setHasRecepies] = useState(false);
 
   useEffect(() => {
+    scrollTo(0, 0);
+
     if (token) {
       authValidation(token);
     }
@@ -53,8 +56,32 @@ export default function Home() {
   }
 
   async function deleteRecepie(recepieId) {
-    await api.deleteRecepie(token, recepieId);
-    window.location.reload();
+    Swal.fire({
+      title: "Tem certeza?",
+      text: "Não será possível recuperar essa receita!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d32f2f",
+      cancelButtonColor: "#388e3c",
+      confirmButtonText: "Sim, pode excluir.",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        api
+          .deleteRecepie(token, recepieId)
+          .then((res) => {
+            Swal.fire(
+              "Excluído",
+              "A receita foi excluída com sucesso.",
+              "success"
+            );
+            window.location.reload();
+          })
+          .catch((error) => {
+            setMessage({ type: "error", text: error.response.data });
+          });
+      }
+    });
   }
 
   return (
